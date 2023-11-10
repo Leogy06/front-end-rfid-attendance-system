@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  background: linear-gradient(#d3d3d3, #1dd1a1);
+}
+.font-awesome-color {
+  color: #333;
+}
+.border-y {
+  border-top: #ccc solid 1px;
+  border-bottom: #ccc solid 1px;
+}
+#center-div {
+  display: grid;
+  place-items: center;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.border-red {
+  border: solid 1px blue;
+}
+.center-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-login {
+  color: #333;
+  width: 200px;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 19px;
+}
+#btn-login:hover {
+  border: #fff solid 1px;
+  background-color: #4cb6b6;
+  color: #fff;
+}
+
+/*HomePage*/
+#ssc-logo {
+  height: 50px;
+}
+.ssc-font {
+  font-size: 16px;
+}
+
+nav {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.navbar-nav .nav-item .nav-link {
+  font-size: 17px;
+  color: #333;
+  border-right: #ccc solid 1px;
+  text-align: center;
+}
+
+li {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  background: linear-gradient(to right, #4cb6b6, #3f8f93);
+  color: #fff;
+  border-radius: 5px;
+  transition: color 0.3s, background-color 0.3s;
+  transform: scale(1.1);
+  padding: 5px;
+}
+
+/*tables*/
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #4cb6b6;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddd;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+  color: #333;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #4cb6b6;
+}
+
+section {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

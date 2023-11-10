@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CreateStudent.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <title>Create Student</title>
+  </head>
+  <body>
+    <h1>Create Student</h1>
+    <form id="studentForm" class="flex">
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        oninput="capitalizeFirstLetter(this)"
+        required
+      />
+
+      <label for="middleName">Middle Name:</label>
+      <input
+        type="text"
+        id="middleName"
+        name="middleName"
+        oninput="capitalizeFirstLetter(this)"
+        required
+      />
+
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        oninput="capitalizeFirstLetter(this)"
+        required
+      />
+
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="year" required maxlength="1" />
+
+      <label for="department">Department:</label>
+      <input
+        type="text"
+        id="department"
+        name="department"
+        required
+        maxlength="9"
+        oninput="capitalizeFirstLetter(this)"
+      />
+
+      <label for="course">Course:</label>
+      <input
+        type="text"
+        id="course"
+        name="course"
+        required
+        placeholder="e.g BSIT"
+      />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="rfid">rfid:</label>
+      <input type="number" id="rfid" name="rfid" required />
+
+      <button type="submit" class="btn btn-success my-4 p-2">Create</button>
+    </form>
+
+    <div id="feedback-message"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
