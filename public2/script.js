@@ -11,7 +11,7 @@ document
           var registeredPassword = "123";
 
           if (email === registeredEmail && password === registeredPassword) {
-            window.location.href = "index.html";
+            window.location.href = "home.html";
           } else {
             alert("Invalid Password or Email");
           }
