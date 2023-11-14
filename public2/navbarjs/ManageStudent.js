@@ -28,11 +28,11 @@ const renderTableRows = (students) => {
       <td>${student.course}</td>
       <td>${student.department}</td>
       <td>${student.rfid}</td>
-      <td><button>Edit</button><button class="btn-delete">Delete</button></td>
+      <td><button class="btn-edit" onclick="createStudentUpdate()">Edit</button><button class="btn-delete">Delete</button></td>
     `;
     tableBody.appendChild(row);
   });
-};
+};                                                                                                          
 
 const getFullName = (student) => {
   const { firstName, middleName, lastName, suffix } = student;
@@ -55,7 +55,7 @@ tableBody.addEventListener("click", async(event) => {
         const response = await fetch(`http://localhost:3002/students/delete/${studentId}`,{method: "DELETE"});
         if (response.ok) {
           alert(`${studentName} was deleted.`);
-          row.remove();
+          location.reload();
         } else {
           alert(`Cannot Delete student with id ${studentId}`);
         }
@@ -69,20 +69,21 @@ tableBody.addEventListener("click", async(event) => {
 
   }
 });
+
 // Fetch data when the script runs
 fetchData();
 
+
+
 //POST
 // Function to open create student form
-function createStudent() {
-  document.getElementById('overlay').style.display = "flex";
+ function createStudent() {
+    document.getElementById('overlay').style.display = "flex";
 }
-
 // Function to close create student form
-function closeForm() {
-  document.getElementById('overlay').style.display = "none";
+ function closeForm() {
+   document.getElementById('overlay').style.display = "none";
 }
-
 // Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to the HTML elements
@@ -96,9 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
 
     if (password.value === passwordMatch.value) {
-      alert("Password match!");
+      
+      password.classList.add("password-match");
+      passwordMatch.classList.add("password-match");
+
+      
     } else {
       password.classList.add("password-mismatch");
+      passwordMatch.classList.add("password-mismatch");
+      alert("password not match")
       return; // Stop further execution if passwords do not match
     }
 
@@ -122,7 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Display success or error message to the user
       if (data.success) {
         alert("Student added!");
+        
+  password.classList.remove("password-match");
+  passwordMatch.classList.remove("password-match");
         studentForm.reset(); // Reset the form fields after successful submission
+        
       } else {
         alert(`Error: ${data.message}`); // Display error message from the server
       }
@@ -134,4 +145,75 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+//PUT
+function createStudentUpdate() {
+  document.getElementById('overlay-update').style.display = "flex";
+}
+// Function to close create student form
+function closeFormUpdate() {
+ document.getElementById('overlay-update').style.display = "none";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const updateForm = document.getElementById('update-form'); // Reference to the user input form
+
+  
+})
+
+//PUT
+// Function to update student data
+// Update student data
+document.addEventListener('DOMContentLoaded', () => {
+  const updateForm = document.getElementById('update-form');
+
+  // Add a submit event listener to the update form
+  updateForm.addEventListener('submit', async (event) => {
+    // Prevent the default form submission behavior to handle it with JavaScript
+    event.preventDefault();
+
+    // Get form data using FormData API
+    const formData = new FormData(updateForm);
+
+    // Convert FormData to a plain JavaScript object
+    const updatedData = Object.fromEntries(formData.entries());
+
+    //filtering keys that has no value
+    const nonEmptyData = {};
+    for(const key in updatedData){
+      if (updatedData[key] !== ''){
+        nonEmptyData[key] = updatedData[key]
+      }
+    }
+    try {
+      // Extract student ID from the form or wherever it's available
+  
+      const button = tableBody.querySelector('button.btn-edit');
+      const tableRow = button.closest('tr');
+      const studentId = tableRow.querySelector('td:first-child').innerText;
+
+      // Send the updated data to the server
+      const response = await fetch(`http://localhost:3002/students/modify/${studentId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nonEmptyData),
+      });
+
+      // Parse the server response as JSON
+      const data = await response.json();
+
+      // Display success or error message to the user
+      if (data.message) {
+        alert(data.message);
+        // Optionally, close the update form or perform other actions
+      } else {
+        alert('Error updating student cant update');
+      }
+    } catch (error) {
+      console.error('Error updating student:', error);
+      alert('Error updating student');
+    }
+  });
+});
 

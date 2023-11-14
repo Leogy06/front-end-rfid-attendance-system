@@ -109,7 +109,7 @@
           </button>
         </div>
         <h1 class="text-center">Input Student Data</h1>
-        <form id="create-form">
+        <form id="create-form" method="post">
           <div class="float-label-container">
             <input
               type="email"
@@ -242,6 +242,150 @@
         </form>
       </div>
     </div>
+
+    <!--Update form-->
+    <div id="overlay-update">
+      <div class="form-container">
+        <div id="btn-container">
+          <button type="reset" id="close-button" onclick="closeFormUpdate()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <h1 class="text-center">Update Student Data</h1>
+        <form id="update-form" method="post">
+          <div class="float-label-container">
+            <input
+              type="email"
+              id="emailUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="email"
+              autocomplete="off"
+            />
+            <label for="email" class="float-label-label">Email</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="password"
+              id="passwordUpdate"
+              class="float-label-input"
+              placeholder=" "
+              name="password"
+            />
+            <label for="password" class="float-label-label">Password</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="password"
+              id="password-matchUpdate"
+              class="float-label-input"
+              placeholder=" "
+              name="password-match"
+            />
+            <label for="password-match" class="float-label-label"
+              >Confirm Password</label
+            >
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="firstNameUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="firstName"
+            />
+            <label for="firstName" class="float-label-label">First name</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="middleNameUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="middleName"
+            />
+            <label for="middleName" class="float-label-label"
+              >Middle name</label
+            >
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="suffixUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="suffix"
+              value=""
+            />
+            <label for="suffix" class="float-label-label">Suffix</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="lastNameUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="lastName"
+            />
+            <label for="lastName" class="float-label-label">Last name</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="rfidUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="rfid"
+            />
+            <label for="rfid" class="float-label-label">RFID tag</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="yearUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="year"
+            />
+            <label for="year" class="float-label-label">Year</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="courseUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="course"
+            />
+            <label for="course" class="float-label-label">Course</label>
+          </div>
+
+          <div class="float-label-container">
+            <input
+              type="text"
+              id="departmentUpdate"
+              class="float-label-input"
+              placeholder=""
+              name="department"
+            />
+            <label for="department" class="float-label-label">Department</label>
+          </div>
+          <div id="btn-container">
+            <button type="submit" id="update-btn">Update Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script src="../navbarjs/ManageStudent.js"></script>
   </body>
 </html>
