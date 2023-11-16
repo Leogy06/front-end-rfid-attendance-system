@@ -1,6 +1,6 @@
 //GET
-const tableBody = document.querySelector("table tbody");
-
+let tableBody = document.querySelector("table tbody");
+document.addEventListener('DOMContentLoaded', () => {});
 const fetchData = async () => {
   try {
     const response = await fetch("http://localhost:3002/students");
@@ -28,7 +28,7 @@ const renderTableRows = (students) => {
       <td>${student.course}</td>
       <td>${student.department}</td>
       <td>${student.rfid}</td>
-      <td><button class="btn-edit" onclick="createStudentUpdate()">Edit</button><button class="btn-delete">Delete</button></td>
+      <td><button class="btn-edit">Edit</button><button class="btn-delete">Delete</button></td>
     `;
     tableBody.appendChild(row);
   });
@@ -39,39 +39,39 @@ const getFullName = (student) => {
   return `${firstName} ${middleName} ${lastName} ${suffix || ""}`.trim();
 };
 
+
 //DELETE
 // Event delegation for delete buttons
-tableBody.addEventListener("click", async(event) => {
-  if (event.target.classList.contains("btn-delete")) {
-   const row = event.target.closest("tr");
-
-   if(row){
-    const studentId = row.querySelector("td:first-child").innerText;
-    const studentName = row.querySelector("td:nth-child(3)").innerText;
-
-    const isConfirmed = window.confirm(`Delete Student ${studentName}?`);
-    if (isConfirmed) {
-      try {
-        const response = await fetch(`http://localhost:3002/students/delete/${studentId}`,{method: "DELETE"});
-        if (response.ok) {
-          alert(`${studentName} was deleted.`);
-          location.reload();
-        } else {
-          alert(`Cannot Delete student with id ${studentId}`);
+document.addEventListener("DOMContentLoaded", () => {
+  tableBody.addEventListener("click", async(event) => {
+    if (event.target.classList.contains("btn-delete")) {
+     const row = event.target.closest("tr");
+  
+     if(row){
+      const studentId = row.querySelector("td:first-child").innerText;
+      const studentName = row.querySelector("td:nth-child(3)").innerText;
+  
+      const isConfirmed = window.confirm(`Delete Student ${studentName}?`);
+      if (isConfirmed) {
+        try {
+          const response = await fetch(`http://localhost:3002/students/delete/${studentId}`,{method: "DELETE"});
+          if (response.ok) {
+            alert(`${studentName} was deleted.`);
+            location.reload();
+          } else {
+            alert(`Cannot Delete student with id ${studentId}`);
+          }
+        } catch (error) {
+          console.error("Error", error);
+          alert(error);
         }
-      } catch (error) {
-        console.error("Error", error);
-        alert(error);
       }
+      
+     }
+  
     }
-    
-   }
-
-  }
+  });
 });
-
-// Fetch data when the script runs
-fetchData();
 
 
 
@@ -83,6 +83,7 @@ fetchData();
 // Function to close create student form
  function closeForm() {
    document.getElementById('overlay').style.display = "none";
+   location.reload();
 }
 // Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       password.classList.add("password-mismatch");
       passwordMatch.classList.add("password-mismatch");
-      alert("password not match")
+      alert("Password does not match or Empty")
       return; // Stop further execution if passwords do not match
     }
 
@@ -130,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.success) {
         alert("Student added!");
         
-  password.classList.remove("password-match");
-  passwordMatch.classList.remove("password-match");
+        password.classList.remove("password-match");
+        passwordMatch.classList.remove("password-match");
         studentForm.reset(); // Reset the form fields after successful submission
         
       } else {
@@ -145,32 +146,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+
 //PUT
 function createStudentUpdate() {
   document.getElementById('overlay-update').style.display = "flex";
 }
+
 // Function to close create student form
 function closeFormUpdate() {
  document.getElementById('overlay-update').style.display = "none";
+ location.reload();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const updateForm = document.getElementById('update-form'); // Reference to the user input form
 
-  
-})
-
-//PUT
-// Function to update student data
-// Update student data
 document.addEventListener('DOMContentLoaded', () => {
-  const updateForm = document.getElementById('update-form');
+tableBody.addEventListener("click", async(event) => {
+  if(event.target.classList.contains("btn-edit")){
+
+    const row = event.target.closest("tr");
+
+    const student_id = row.querySelector("td:first-child").innerText;
+    const updateForm = document.getElementById('update-form');
+
+    createStudentUpdate();
+
+    const passwordUpdate = document.getElementById("passwordUpdate");
+    const passwordMatchUpdate = document.getElementById("passwordMatch");
+
 
   // Add a submit event listener to the update form
   updateForm.addEventListener('submit', async (event) => {
     // Prevent the default form submission behavior to handle it with JavaScript
     event.preventDefault();
-
     // Get form data using FormData API
     const formData = new FormData(updateForm);
 
@@ -185,14 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     try {
-      // Extract student ID from the form or wherever it's available
-  
-      const button = tableBody.querySelector('button.btn-edit');
-      const tableRow = button.closest('tr');
-      const studentId = tableRow.querySelector('td:first-child').innerText;
 
       // Send the updated data to the server
-      const response = await fetch(`http://localhost:3002/students/modify/${studentId}`, {
+      const response = await fetch(`http://localhost:3002/students/modify/${student_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -215,5 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Error updating student');
     }
   });
+  }
+}) 
 });
 
+//the heart of the script
+fetchData();

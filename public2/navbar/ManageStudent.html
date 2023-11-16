@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Manage Student</title>
+    <link
+      rel="stylesheet"
+      href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="../navbarcss/ManageStudent.css" />
     <!-- Font Awesome Cdn Link -->
     <link
@@ -14,7 +18,7 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="containerCss">
       <nav>
         <ul>
           <li>
@@ -73,6 +77,7 @@
           <div class="attendance-list">
             <div class="flex">
               <h1>Student List</h1>
+              <span>search</span>
               <span>
                 <button
                   type="menu"
@@ -110,103 +115,98 @@
         </div>
         <h1 class="text-center">Input Student Data</h1>
         <form id="create-form" method="post">
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="email"
+              class="form-control"
               id="email"
-              class="float-label-input"
-              placeholder=""
+              placeholder="Email"
               name="email"
               autocomplete="off"
             />
-            <label for="email" class="float-label-label">Email</label>
+            <label for="floatingEmail">Email</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="password"
+              class="form-control"
               id="password"
-              class="float-label-input"
-              placeholder=" "
+              placeholder="password"
               name="password"
             />
-            <label for="password" class="float-label-label">Password</label>
+            <label for="floatingPassword">Password</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="password"
+              class="form-control"
               id="password-match"
-              class="float-label-input"
-              placeholder=" "
+              placeholder="password-match"
               name="password-match"
             />
-            <label for="password-match" class="float-label-label"
-              >Confirm Password</label
-            >
+            <label for="floatingPassword-match">Confirm Password</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control text-capitalize"
               id="firstName"
-              class="float-label-input"
-              placeholder=""
+              placeholder="firstName"
               name="firstName"
             />
-            <label for="firstName" class="float-label-label">First name</label>
+            <label for="firstName">First name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control"
               id="middleName"
-              class="float-label-input"
-              placeholder=""
+              placeholder="middleName"
               name="middleName"
             />
-            <label for="middleName" class="float-label-label"
-              >Middle name</label
-            >
+            <label for="floatingmiddleName">Middle Name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control"
               id="suffix"
-              class="float-label-input"
-              placeholder=""
+              placeholder="suffix"
               name="suffix"
-              value=""
             />
-            <label for="suffix" class="float-label-label">Suffix</label>
+            <label for="floatingsuffix">suffix</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control"
               id="lastName"
-              class="float-label-input"
-              placeholder=""
+              placeholder="lastName"
               name="lastName"
             />
-            <label for="lastName" class="float-label-label">Last name</label>
+            <label for="floatinglastName">Last Name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
-              type="text"
+              type="rfid"
+              class="form-control"
               id="rfid"
-              class="float-label-input"
-              placeholder=""
+              placeholder="rfid"
               name="rfid"
             />
-            <label for="rfid" class="float-label-label">RFID tag</label>
+            <label for="floatingrfid">rfid</label>
           </div>
 
           <div class="float-label-container">
             <input
-              type="text"
+              type="number"
               id="year"
               class="float-label-input"
               placeholder=""
@@ -215,29 +215,32 @@
             <label for="year" class="float-label-label">Year</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control text-uppercase"
               id="course"
-              class="float-label-input"
-              placeholder=""
+              placeholder="course"
               name="course"
             />
-            <label for="course" class="float-label-label">Course</label>
+            <label for="floatingcourse">course</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="text"
+              class="form-control text-uppercase"
               id="department"
-              class="float-label-input"
-              placeholder=""
+              placeholder="department"
               name="department"
             />
-            <label for="department" class="float-label-label">Department</label>
+            <label for="floatingdepartment">department</label>
           </div>
+
           <div id="btn-container">
-            <button type="submit" id="create-btn">Add Student</button>
+            <button type="submit" id="create-btn" class="btn btn-success">
+              Add Student
+            </button>
           </div>
         </form>
       </div>
@@ -253,76 +256,71 @@
         </div>
         <h1 class="text-center">Update Student Data</h1>
         <form id="update-form" method="post">
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="email"
-              id="emailUpdate"
-              class="float-label-input"
-              placeholder=""
+              class="form-control"
+              id="email"
               name="email"
               autocomplete="off"
+              placeholder="name@example.com"
             />
-            <label for="email" class="float-label-label">Email</label>
+            <label for="email">Email address</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="password"
+              class="form-control"
               id="passwordUpdate"
-              class="float-label-input"
-              placeholder=" "
+              placeholder="password"
               name="password"
             />
-            <label for="password" class="float-label-label">Password</label>
+            <label for="password">Password</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="password"
-              id="password-matchUpdate"
-              class="float-label-input"
-              placeholder=" "
-              name="password-match"
+              class="form-control"
+              id="passwordMatchUpdate"
+              placeholder="password"
+              name="password"
             />
-            <label for="password-match" class="float-label-label"
-              >Confirm Password</label
-            >
+            <label for="password">Confirm Password</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="firstNameUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="firstName"
               name="firstName"
             />
-            <label for="firstName" class="float-label-label">First name</label>
+            <label for="firstName">First name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="middleNameUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="middleName"
               name="middleName"
             />
-            <label for="middleName" class="float-label-label"
-              >Middle name</label
-            >
+            <label for="middleName">Middle name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="suffixUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="suffix"
               name="suffix"
-              value=""
             />
-            <label for="suffix" class="float-label-label">Suffix</label>
+            <label for="suffix">suffix</label>
           </div>
 
           <div class="float-label-container">

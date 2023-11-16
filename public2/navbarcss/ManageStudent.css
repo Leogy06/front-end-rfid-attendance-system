@@ -54,6 +54,7 @@ a {
   color: rgb(85, 83, 83);
   display: table;
   padding: 10px;
+  text-decoration: none;
 }
 nav .fas {
   position: relative;
@@ -80,11 +81,14 @@ a:hover i {
   bottom: 0;
 }
 
-.container {
+.containerCss {
   display: flex;
   position: relative;
 }
-
+li {
+  list-style: none;
+  margin-left: -40px;
+}
 /* MAin Section */
 .text-center {
   text-align: center;
