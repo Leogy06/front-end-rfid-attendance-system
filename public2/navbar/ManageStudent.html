@@ -34,7 +34,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="attendance.html">
               <i class="fas fa-chart-bar"></i>
               <span class="nav-item">Attendance</span>
             </a>
@@ -69,15 +69,25 @@
 
       <section class="main">
         <div class="main-top">
-          <h1>Manage Student</h1>
+          <h2>Manage Student</h2>
+          <span
+            ><form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="searchInput"
+                autocomplete="off"
+              /></form
+          ></span>
           <i class="fas fa-user-cog"></i>
         </div>
 
         <section class="attendance">
           <div class="attendance-list">
             <div class="flex">
-              <h1>Student List</h1>
-              <span>search</span>
+              <h2>Student List</h2>
               <span>
                 <button
                   type="menu"
@@ -113,7 +123,7 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <h1 class="text-center">Input Student Data</h1>
+        <h2 class="text-center pb-3">Add Student Data</h2>
         <form id="create-form" method="post">
           <div class="form-floating">
             <input
@@ -163,10 +173,11 @@
           <div class="form-floating">
             <input
               type="text"
-              class="form-control"
+              class="form-control text-capitalize"
               id="middleName"
               placeholder="middleName"
               name="middleName"
+              autocapitalize="words"
             />
             <label for="floatingmiddleName">Middle Name</label>
           </div>
@@ -185,7 +196,7 @@
           <div class="form-floating">
             <input
               type="text"
-              class="form-control"
+              class="form-control text-capitalize"
               id="lastName"
               placeholder="lastName"
               name="lastName"
@@ -201,18 +212,18 @@
               placeholder="rfid"
               name="rfid"
             />
-            <label for="floatingrfid">rfid</label>
+            <label for="floatingrfid">RFID</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating">
             <input
               type="number"
+              class="form-control text-uppercase"
               id="year"
-              class="float-label-input"
-              placeholder=""
+              placeholder="year"
               name="year"
             />
-            <label for="year" class="float-label-label">Year</label>
+            <label for="floatingdepartment">Year</label>
           </div>
 
           <div class="form-floating">
@@ -223,7 +234,7 @@
               placeholder="course"
               name="course"
             />
-            <label for="floatingcourse">course</label>
+            <label for="floatingcourse">Course</label>
           </div>
 
           <div class="form-floating">
@@ -234,7 +245,7 @@
               placeholder="department"
               name="department"
             />
-            <label for="floatingdepartment">department</label>
+            <label for="floatingdepartment">Department</label>
           </div>
 
           <div id="btn-container">
@@ -304,7 +315,7 @@
           <div class="form-floating mb-3">
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               id="middleNameUpdate"
               placeholder="middleName"
               name="middleName"
@@ -320,62 +331,62 @@
               placeholder="suffix"
               name="suffix"
             />
-            <label for="suffix">suffix</label>
+            <label for="suffix">Suffix</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="lastNameUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="last name"
               name="lastName"
             />
-            <label for="lastName" class="float-label-label">Last name</label>
+            <label for="lastName">Last name</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="rfidUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="rfid"
               name="rfid"
             />
-            <label for="rfid" class="float-label-label">RFID tag</label>
+            <label for="rfid">RFID</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
-              type="text"
+              type="number"
+              class="form-control"
               id="yearUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="Year"
               name="year"
             />
-            <label for="year" class="float-label-label">Year</label>
+            <label for="year">Year</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="courseUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="course"
               name="course"
             />
-            <label for="course" class="float-label-label">Course</label>
+            <label for="course">Course</label>
           </div>
 
-          <div class="float-label-container">
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
               id="departmentUpdate"
-              class="float-label-input"
-              placeholder=""
+              placeholder="department"
               name="department"
             />
-            <label for="department" class="float-label-label">Department</label>
+            <label for="department">Department</label>
           </div>
           <div id="btn-container">
             <button type="submit" id="update-btn">Update Student</button>

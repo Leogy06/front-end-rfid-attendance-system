@@ -232,9 +232,7 @@ table thead tr {
   color: #fff;
   transition: 0.5rem;
 }
-#manage-student {
-  background-color: #4fb9af;
-}
+
 a[aria-current="page"] {
   font-weight: bold;
   background-color: #4fb9af;
@@ -250,13 +248,13 @@ a[aria-current="page"] {
   border: 1px solid green !important;
 }
 
-/*add student*/
+/*add student do not delete*/
 .flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-#create-button {
+#record-attendance {
   background-color: #4fb9af;
   color: white;
   padding: 10px 15px;
@@ -265,160 +263,41 @@ a[aria-current="page"] {
   font-size: 16px;
   border-radius: 5px;
 }
-#create-button:hover {
+#record-attendance:hover {
   background-color: #34af6d;
   transition-duration: 0.9ms;
 }
-/*for adding student*/
-#overlay {
-  position: fixed;
-  top: 0;
+/*dont delete above!*/
+
+#rfid-container {
+  position: sticky;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding: 20px;
-  display: none;
-}
-.form-container {
-  color: #333;
-  background-color: #f3f3f3;
-  width: auto;
-  height: fit-content;
-  box-shadow: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 15px 20px;
-  position: relative;
-}
-#create-form {
-  margin: 10px 0 0 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-#btn-container {
-  display: flex;
-  flex-direction: row-reverse;
-  grid-column: span 3;
-}
-#close-button {
-  cursor: pointer;
-  padding: 5px;
-  width: 27px;
-}
-
-#close-button:hover {
-  background-color: #ccc;
-  padding: 5px;
-  transform: scale(1.1);
-  border-radius: 5px;
-}
-#create-btn {
-  background-color: #4fb9af;
-  padding: 10px;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#create-btn:hover {
-  background-color: #5ba9a1;
-  padding: 10px;
-  color: #fff;
-  border-radius: 5px;
-}
-
-/*Update Form*/
-#overlay-update {
-  position: fixed;
   top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding: 20px;
-  display: none;
-}
-.form-container {
-  color: #333;
-  background-color: #f3f3f3;
-  width: auto;
-  height: fit-content;
-  box-shadow: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 15px 20px;
-  position: relative;
-}
-#update-form {
-  margin: 10px 0 0 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  bottom: 0;
+  height: 100vh;
+  /* width: 280px; */
+  background: #fff;
+  transition: 1s;
+  width: 280px;
+  padding: 20px 3px;
 }
 
-#btn-container {
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
+.flex-center {
   display: flex;
-  flex-direction: row-reverse;
-  grid-column: span 3;
+  flex-direction: column;
 }
-#close-button {
-  cursor: pointer;
-  padding: 5px;
-  width: 27px;
+#fail {
+  border-radius: 5px;
+  margin: 3px;
 }
 
-#close-button:hover {
-  background-color: #ccc;
-  padding: 5px;
-  transform: scale(1.1);
+#success {
   border-radius: 5px;
-}
-#update-btn {
-  background-color: #4fb9af;
-  padding: 10px;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#update-btn:hover {
-  background-color: #5ba9a1;
-  padding: 10px;
-  color: #fff;
-  border-radius: 5px;
-}
-/*Input float label*/
-.float-label-container {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.float-label-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.float-label-label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #888;
-  transition: top 0.1s, font-size 0.3s;
-}
-
-.float-label-input:focus + .float-label-label,
-.float-label-input:not(:placeholder-shown) + .float-label-label {
-  top: 10px;
-  font-size: 12px;
-  color: #333;
-}
-.hide {
-  display: none;
+  margin: 3px;
 }

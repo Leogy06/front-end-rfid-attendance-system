@@ -1,6 +1,5 @@
 //GET
-let tableBody = document.querySelector("table tbody");
-document.addEventListener('DOMContentLoaded', () => {});
+const tableBody = document.querySelector("table tbody");
 const fetchData = async () => {
   try {
     const response = await fetch("http://localhost:3002/students");
@@ -10,9 +9,12 @@ const fetchData = async () => {
       renderTableRows(data.students.slice(0, 10));
     } else {
       console.error("No student data found");
+      return[]
     }
   } catch (error) {
     console.error("Error fetching data:", error);
+    alert(error)
+    return[]
   }
 };
 
@@ -36,8 +38,9 @@ const renderTableRows = (students) => {
 
 const getFullName = (student) => {
   const { firstName, middleName, lastName, suffix } = student;
-  return `${firstName} ${middleName} ${lastName} ${suffix || ""}`.trim();
+  return `${firstName} ${middleName || ""} ${lastName} ${suffix || ""}`.trim();
 };
+
 
 
 //DELETE
@@ -57,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const response = await fetch(`http://localhost:3002/students/delete/${studentId}`,{method: "DELETE"});
           if (response.ok) {
             alert(`${studentName} was deleted.`);
-            location.reload();
+            row.remove();
           } else {
             alert(`Cannot Delete student with id ${studentId}`);
           }
@@ -83,8 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to close create student form
  function closeForm() {
    document.getElementById('overlay').style.display = "none";
-   location.reload();
 }
+
+//capitalize first letter fname, mname,lastname
+function capitalizeNames (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+//capital all department and year
+function capitalizeAll (str) {
+  return str.toUpperCase();
+}
+
 // Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to the HTML elements
@@ -99,10 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (password.value === passwordMatch.value) {
       
-      password.classList.add("password-match");
-      passwordMatch.classList.add("password-match");
+      password.classList.remove("password-match");
+      passwordMatch.classList.remove("password-match");
 
-      
     } else {
       password.classList.add("password-mismatch");
       passwordMatch.classList.add("password-mismatch");
@@ -115,6 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Convert FormData to a plain JavaScript object
     const userData = Object.fromEntries(formData.entries());
+
+    userData.firstName = capitalizeNames(userData.firstName);
+    userData.lastName = capitalizeNames(userData.lastName);
+    userData.suffix = capitalizeNames(userData.suffix);
+    userData.middleName = capitalizeNames(userData.middleName);
+    
+    userData.course = capitalizeAll(userData.course);
+    userData.department = capitalizeAll(userData.department);
+    
 
     try {
       // Send data to the server
@@ -156,11 +177,12 @@ function createStudentUpdate() {
 // Function to close create student form
 function closeFormUpdate() {
  document.getElementById('overlay-update').style.display = "none";
- location.reload();
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
+const tableBody = document.querySelector("table tbody");
+
 tableBody.addEventListener("click", async(event) => {
   if(event.target.classList.contains("btn-edit")){
 
@@ -171,14 +193,11 @@ tableBody.addEventListener("click", async(event) => {
 
     createStudentUpdate();
 
-    const passwordUpdate = document.getElementById("passwordUpdate");
-    const passwordMatchUpdate = document.getElementById("passwordMatch");
-
-
   // Add a submit event listener to the update form
   updateForm.addEventListener('submit', async (event) => {
     // Prevent the default form submission behavior to handle it with JavaScript
     event.preventDefault();
+    
     // Get form data using FormData API
     const formData = new FormData(updateForm);
 
@@ -222,5 +241,66 @@ tableBody.addEventListener("click", async(event) => {
 }) 
 });
 
-//the heart of the script
+//search bar function
+document.addEventListener('DOMContentLoaded', () => {
+  const bodyTable = document.querySelector('table tbody');
+  const searchInput = document.getElementById('searchInput');
+  let students = [];
+
+  const getFullName = (student) => {
+    const { firstName, middleName, lastName, suffix } = student;
+    return `${firstName} ${middleName} ${lastName} ${suffix || ''}`.trim();
+  };
+
+  const renderTable = (students) => {
+     // Clear previous table content
+     bodyTable.innerHTML='';
+    students.forEach((student, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td style="display: none;">${student._id}</td>
+        <td>${index + 1}</td>
+        <td>${getFullName(student)}</td>
+        <td>${student.year}</td>
+        <td>${student.course}</td>
+        <td>${student.department}</td>
+        <td>${student.rfid}</td>
+        <td><button class="btn-edit">Edit</button><button class="btn-delete">Delete</button></td>
+      `;
+      bodyTable.appendChild(row);
+    });
+
+  };
+
+  searchInput.addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase();
+    
+//always put searchable type of data which is only string like names 
+      const filteredStudents = students.slice(0, 10).filter((student) => {
+      const fullName = getFullName(student).toLowerCase();
+      const course = student.course.toLowerCase();
+      const department = student.department.toLowerCase();
+
+      return (
+      fullName.includes(value) || 
+      course.includes(value)||
+      department.includes(value)
+      );
+
+    });
+    renderTable(filteredStudents);
+  });
+
+  // Fetch and render initial data
+  fetch('http://localhost:3002/students')
+    .then((res) => res.json())
+    .then((data) => {
+      students = data.students;
+    })
+    .catch((error) => {
+      console.error("Error Fetching data", error);
+      alert(error)
+    })
+});
+
 fetchData();
